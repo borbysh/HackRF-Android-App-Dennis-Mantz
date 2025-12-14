@@ -1,21 +1,27 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply plugin: 'com.android.application'
 
-buildscript {
-    repositories {
-        google()
-        jcenter()
+android {
+    namespace = "com.mantz_it.rfanalyzer"
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "com.mantz_it.rfanalyzer"
+        minSdkVersion 14
+        targetSdkVersion 23
+        versionCode 1303
+        versionName "1.13"
     }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:8.2.0'
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
     }
 }
 
-allprojects {
-    repositories {
-        google()
-        jcenter()
-    }
+dependencies {
+    implementation  fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':hackrf_android')
+    implementation 'com.android.support:appcompat-v7:23.3.0'
 }
